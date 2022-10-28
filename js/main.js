@@ -174,23 +174,20 @@ class Cliente{
     }
 }
 
+const arrayClientes = [];
+
 const formulario = document.getElementById("formulario");
 
 formulario.addEventListener("submit", (e) => {
     e.preventDefault();
-    const nombreCliente = document.getElementById("nombreCliente");
-    const apellidoCliente = document.getElementById("apellidoCliente");
-    const mailCliente = document.getElementById("mailCliente");
-    console.log(nombreCliente.value);
-    console.log(apellidoCliente.value);
-    console.log(mailCliente.value)
-    console.log("Formulario enviado");
+    const nombreCliente = document.getElementById("nombreCliente").value;
+    const apellidoCliente = document.getElementById("apellidoCliente").value;
+    const mailCliente = document.getElementById("mailCliente").value;
+
+    const cliente = new Cliente(nombreCliente, apellidoCliente, mailCliente);
+    arrayClientes.push(cliente);
+
+    localStorage.setItem("cliente", JSON.stringify(cliente));
+
     formulario.reset();
 })
-
-const cliente = new Cliente(nombreCliente.value, apellidoCliente.value, mailCliente.value);
-
-const arrayClientes = [];
-arrayClientes.push(cliente);
-
-localStorage.setItem("cliente", JSON.stringify(cliente));
